@@ -1,0 +1,11 @@
+<div class="row marketing">
+    <ul id="files"">
+        <%= for f <- @files do %>
+            <li>
+                <a href="http://phoenixframework.org/docs/overview"><%= f %></a>
+            </li>
+        <% end %>
+            
+        </li>
+    </ul>
+</div>
