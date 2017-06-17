@@ -19,7 +19,7 @@ defmodule Mutombofon.Mixfile do
   def application do
     [mod: {Mutombofon, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :exq]]
+                    :phoenix_ecto, :postgrex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,7 +38,6 @@ defmodule Mutombofon.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:exq, "~> 0.9.0"},
      {:quantum, ">= 2.0.0-beta.1"},
      {:timex, "~> 3.0"}
     ]
