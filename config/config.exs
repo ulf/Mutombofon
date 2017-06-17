@@ -22,20 +22,6 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :exq,
-  name: Exq,
-  host: "127.0.0.1",
-  port: 6379,
-  #password: "",
-  namespace: "exq",
-  concurrency: :infinite,
-  queues: ["default"],
-  poll_timeout: 50,
-  scheduler_poll_timeout: 200,
-  scheduler_enable: true,
-  max_retries: 25,
-  shutdown_timeout: 5000
-
 config :mutombofon, Mutombofon.Scheduler,
   jobs: [
     # Every minute
