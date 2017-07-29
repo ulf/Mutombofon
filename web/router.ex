@@ -18,6 +18,9 @@ defmodule Mutombofon.Router do
 
     get "/", PageController, :index
     get "/list", PageController, :list
+    get "/upload", PageController, :upload
+    post "/fileupload", PageController, :fileupload
+    post "/play", PageController, :play
   end
 
   # Other scopes may use custom stacks.

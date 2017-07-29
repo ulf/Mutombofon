@@ -1,0 +1,16 @@
+#!/bin/bash
+while true; do
+    arecord -q -r 44100 -d 5 /tmp/arec.wav ; sox -t .wav /tmp/arec.wav -n stat 2>&1 | grep "Maximum amplitude" | cut -d ':' -f 2  | ./check.py $1
+    if [ $? -eq 0 ] ; then
+        #        cp /tmp/audio/arec.wav /home/ulf/Audio/`date +%Y-%m-%d-%H%M%S`.wav
+        # sox /tmp/arec.wav /home/ulf/Audio/`date +%Y-%m-%d-%H%M%S`.wav silence -l 1 0.1 1% -1 2.0 1%
+        sox /tmp/arec.wav /home/ulf/Audio/`date +%Y-%m-%d-%H%M%S`.wav silence 1 0.1 1
+    fi
+    # Play file if needed
+    FILE=/tmp/play
+    if [ -f $FILE ]; then
+#        aplay -q `cat $FILE`
+        mpg123 -q `cat $FILE`
+        rm $FILE
+    fi
+done

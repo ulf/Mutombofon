@@ -1,0 +1,18 @@
+<div class="row marketing">
+    <h3>Uploads</h3>
+    <ul id="files"">
+        <%= for f <- @files do %>
+            <li>
+                <%= f %>
+            </li>
+        <% end %>
+            
+        </li>
+    </ul>
+</div>
+<form method="post" action="/fileupload" enctype="multipart/form-data">
+    <label for="file">Filename:</label>
+    <input type="file" name="file" id="file" />
+    <input type="submit" name="submit" value="Submit" />
+    <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
+</form>

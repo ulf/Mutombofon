@@ -1,4 +1,5 @@
 <div class="row marketing">
+    <img id="camera" src="http://192.168.178.37/html/cam_pic.php">
     <ul id="files"">
         <%= for f <- @files do %>
             <li>
@@ -9,3 +10,13 @@
         </li>
     </ul>
 </div>
+<form method="post" action="/play" >
+    <select name="file">
+        <%= for f <- @uploads do %>
+            <option><%= f %></option>
+        <% end %>
+    </select>
+    <input type="submit" name="submit" value="Play" />
+    <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
+</form>
+

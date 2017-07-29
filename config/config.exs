@@ -25,7 +25,7 @@ config :logger, :console,
 config :mutombofon, Mutombofon.Scheduler,
   jobs: [
     # Every minute
-    {"* * * * *",      {Mutombofon.FileChecker, :check_for_files, []}},
+    {"* * * * *",      {Mutombofon.FileChecker, :run, []}},
   ]
 
 # Import environment specific config. This must remain at the bottom

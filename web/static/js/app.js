@@ -25,8 +25,29 @@ import $ from "jquery"
 
 class App {
 
+    static notify(){
+        if(typeof Notification !== 'undefined'){
+            Notification.requestPermission(function (permission) {
+                if (permission !== 'granted') return;
+
+                var notification = new Notification('Kind macht Krach', {
+                    body: '',
+                });
+
+                notification.onclick = function () {
+                    window.focus();
+                    this.close()
+                };
+            });
+        }
+    }
+
     static init(){
 
+        window.setInterval(function(){
+            var d = new Date();
+            $('#camera').attr('src', "http://192.168.178.37/html/cam_pic.php?time="+d.getTime()+"&pDelay=200000")
+        }, 1000);
 
         let socket = new Socket("/socket", {
 //            logger: ((kind, msg, data) => { console.log(`${kind}: ${msg}`, data) })
@@ -52,21 +73,19 @@ class App {
         chan.on("new:files", msg => {
             var alert = false;
             var last = false;
-            msg.files.forEach(function(f){
-                f = f.replace('/home/ulf', '');
-                if(files.indexOf(f) == -1){
+            console.log(msg)
+            var f = msg.file;
+            if(files.indexOf(f) == -1){
                     files.push(f)
                     alert = true;
                     $list.append('<li><a href="'+f+'">'+f+'</a></li>');
                     last = f;
-                }
-            })
+            }
             if(alert){
-                console.log("New Files!");
                 var audio = new Audio(last);
                 audio.play();
+                App.notify();
             }
-            console.log(msg)
         })
 
     }
