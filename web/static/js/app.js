@@ -44,10 +44,10 @@ class App {
 
     static init(){
 
-        window.setInterval(function(){
+/*        window.setInterval(function(){
             var d = new Date();
             $('#camera').attr('src', "http://192.168.178.37/html/cam_pic.php?time="+d.getTime()+"&pDelay=200000")
-        }, 1000);
+        }, 1000); */
 
         let socket = new Socket("/socket", {
 //            logger: ((kind, msg, data) => { console.log(`${kind}: ${msg}`, data) })
@@ -71,6 +71,7 @@ class App {
         chan.onClose(e => console.log("channel closed", e))
 
         chan.on("new:files", msg => {
+            var autoplay = $('#flip').checked;
             var alert = false;
             var last = false;
             console.log(msg)
@@ -82,8 +83,10 @@ class App {
                     last = f;
             }
             if(alert){
-                var audio = new Audio(last);
-                audio.play();
+                if(autoplay){
+                    var audio = new Audio(last);
+                    audio.play();
+                }
                 App.notify();
             }
         })

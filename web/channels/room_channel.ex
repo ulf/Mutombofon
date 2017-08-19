@@ -13,8 +13,9 @@ defmodule Mutombofon.RoomChannel do
   for the requested topic
   """
   def join("room:lobby", _message, socket) do
-#    socket = assign(socket, :game, game_token)
-    {:ok, socket}
+    #    socket = assign(socket, :game, game_token)
+#    broadcast! socket, %{base: "http://www.taxi.de"}
+    {:ok, %{base: "http://www.taxi.de"}, socket}
   end
 
   def handle_info({:after_join, msg}, socket) do
@@ -26,14 +27,6 @@ defmodule Mutombofon.RoomChannel do
   def terminate(reason, _socket) do
     Logger.debug"> leave #{inspect reason}"
     :ok
-  end
-
-  def handle_in("start", msg, socket) do
-    Logger.debug "Start requested"
-    {:ok, ack} = Exq.enqueue_in(Exq, "default", 5, "GameStarter", [socket.assigns[:game]])
-    broadcast! socket, "game:starting", %{}
-    # No reply necessary
-    {:noreply, socket}
   end
 
   def handle_in("new:files", msg, socket) do
