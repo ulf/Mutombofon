@@ -18,11 +18,11 @@ defmodule Mutombofon.Web do
 
   def model do
     quote do
-      use Ecto.Schema
+#      use Ecto.Schema
 
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
+#      import Ecto
+#      import Ecto.Changeset
+#      import Ecto.Query
     end
   end
 
@@ -31,8 +31,8 @@ defmodule Mutombofon.Web do
       use Phoenix.Controller
 
       alias Mutombofon.Repo
-      import Ecto
-      import Ecto.Query
+#      import Ecto
+#      import Ecto.Query
 
       import Mutombofon.Router.Helpers
       import Mutombofon.Gettext
@@ -66,8 +66,8 @@ defmodule Mutombofon.Web do
       use Phoenix.Channel
 
       alias Mutombofon.Repo
-      import Ecto
-      import Ecto.Query
+#      import Ecto
+#      import Ecto.Query
       import Mutombofon.Gettext
     end
   end
